@@ -1,5 +1,6 @@
 import tensorlayer as tl
 import tensorflow as tf
+import multiprocessing
 
 def get_train_data(img_hr_size, img_lr_size, batch_size, path_folder_with_images, shuffle_buffer_size=128):
 
