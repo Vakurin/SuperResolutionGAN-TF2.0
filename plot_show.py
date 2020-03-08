@@ -25,10 +25,13 @@ def show_plot_results(train_ds, pre_generator, gan_generator):
     hr = hr[:, :] * 127.5 + 127.5
     hr = tf.dtypes.cast(hr, tf.int32)
 
+    psnr_pre = tf.image.psnr(pre_sr, hr, max_val=255)
+    psnr_gan = tf.image.psnr(gan_sr, hr, max_val=255)
+
     plt.figure(figsize=(20, 20))
 
     images = [lr, hr, pre_sr, gan_sr]
-    titles = ['LR', 'Original', 'SR (PRE)', 'SR (GAN)']
+    titles = ['LR', 'Original', f'SR (PRE) RSNR:{psnr_pre}', f'SR (GAN) - RSNR:{psnr_gan}']
     positions = [1, 2, 3, 4]
 
 
